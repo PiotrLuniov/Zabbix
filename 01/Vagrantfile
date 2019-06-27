@@ -1,0 +1,26 @@
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "zabbix01" do |zabbix01|
+  zabbix01.vm.box = "sbeliakou/centos"
+  zabbix01.vm.hostname = "zabbix01"
+  zabbix01.vm.network "private_network", ip:"172.33.33.11"
+  zabbix01.vm.provision "shell", path:"zabbix01.sh"
+    zabbix01.vm.provider "virtualbox" do |vb|
+    vb.name = "zabbix01vm"
+    vb.memory = "2048"
+    end
+  end
+
+  config.vm.define "zabbix02" do |zabbix02|
+  zabbix02.vm.box = "sbeliakou/centos"
+  zabbix02.vm.hostname = "zabbix02"
+  zabbix02.vm.network "private_network", ip:"172.33.33.22"
+  zabbix02.vm.provision "shell", path:"zabbix02.sh"
+    zabbix02.vm.provider "virtualbox" do |vb|
+    vb.name = "zabbix02vm"
+    vb.memory = "2048"
+    end
+  end
+
+end
